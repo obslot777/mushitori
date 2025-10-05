@@ -1,0 +1,100 @@
+body {
+  margin: 0;
+  font-family: "Noto Sans JP", sans-serif;
+  text-align: center;
+  background-color: #e6f5d6;
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.hidden {
+  display: none;
+}
+
+h1, h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+button {
+  font-size: 1.5em;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 12px;
+  background-color: #ffcc66;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #ffdd88;
+}
+
+#status-bar {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  font-size: 1.5em;
+  margin: 10px auto;
+}
+
+#play-area {
+  flex: 1;
+  width: 100%;
+  background: linear-gradient(to bottom, #ccffcc, #99cc66);
+  position: relative;
+  overflow: hidden;
+}
+
+#basket {
+  font-size: 5em;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.bug {
+  position: absolute;
+  font-size: 3em;
+  cursor: pointer;
+  user-select: none;
+  /* タッチやポインタの既定の動作を抑制して、移動中のタップを確実に受け取る */
+  touch-action: none;
+  /* ブラウザの最適化ヒント。位置と変形がよく変わることを伝える */
+  will-change: left, top, transform, opacity;
+}
+
+.bug.fly-to-basket {
+  /* JS will set a specific transition for left/top/transform/opacity; keep transform & opacity targets here */
+  transform: scale(0.2);
+  opacity: 0;
+  transform-origin: center center;
+}
+
+.bug:active {
+  transform: scale(0.8);
+}
+
+/* 捕まえたときの+1エフェクト */
+.effect {
+  position: absolute;
+  font-size: 1.2em;
+  color: red;
+  font-weight: bold;
+  animation: floatUp 1s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  0%   { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-40px); }
+}
+

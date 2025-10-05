@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>虫とりゲーム</title>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#99cc66">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- タイトル画面 -->
+  <div id="title-screen" class="screen">
+    <h1>🌱 むしとりゲーム 🐞</h1>
+    <button id="start-btn">スタート</button>
+  </div>
+
+  <!-- ゲーム画面 -->
+  <div id="game-screen" class="screen hidden">
+    <div id="status-bar">
+      <span id="time">じかん: 30</span>
+      <span id="score">スコア: 0</span>
+    </div>
+    <div id="play-area"></div>
+    <div id="basket">🧺</div> <!-- ← かごを追加 -->
+  </div>
+
+  <!-- 結果画面 -->
+  <div id="result-screen" class="screen hidden">
+    <h2>🎉 けっかはっぴょう！ 🎉</h2>
+    <p id="final-score"></p>
+    <button id="restart-btn">もういちどあそぶ</button>
+  </div>
+
+  <!-- 効果音 -->
+  <audio id="pop-sound" src="pop.mp3" preload="auto"></audio>
+  <audio id="bgm" src="bgm.mp3" loop></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
