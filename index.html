@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>虫とりゲーム</title>
-  <link rel="manifest" href="/manifest.json">
+  <link rel="manifest" href="./manifest.json">
   <meta name="theme-color" content="#99cc66">
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="style.css">
@@ -13,24 +13,39 @@
   <!-- タイトル画面 -->
   <div id="title-screen" class="screen">
     <h1>🌱 むしとりゲーム 🐞</h1>
-    <button id="start-btn">スタート</button>
+    <div class="start-buttons">
+      <button id="start-single">ひとりであそぶ</button>
+      <button id="start-two">ふたりであそぶ</button>
+    </div>
   </div>
 
   <!-- ゲーム画面 -->
   <div id="game-screen" class="screen hidden">
     <div id="status-bar">
+      <span id="score1">プレイヤー1: 0</span>
       <span id="time">じかん: 30</span>
-      <span id="score">スコア: 0</span>
+      <span id="score2">プレイヤー2: 0</span>
+      <span id="score" class="single">スコア: 0</span>
     </div>
-    <div id="play-area"></div>
-    <div id="basket">🧺</div> <!-- ← かごを追加 -->
+    <div id="play-area">
+      <!-- player areas will be used for two-player mode -->
+      <div class="player-area top" id="player1-area"></div>
+      <div class="player-area bottom" id="player2-area"></div>
+      <div class="player-separator"></div>
+    </div>
+    <div id="basket" class="single">🧺</div>
+    <div id="basket1" class="two">🧺</div>
+    <div id="basket2" class="two">🧺</div> <!-- ← かごを追加 -->
   </div>
 
   <!-- 結果画面 -->
   <div id="result-screen" class="screen hidden">
     <h2>🎉 けっかはっぴょう！ 🎉</h2>
     <p id="final-score"></p>
-    <button id="restart-btn">もういちどあそぶ</button>
+    <div class="restart-buttons">
+      <button id="restart-single">ひとりであそぶ</button>
+      <button id="restart-two">ふたりであそぶ</button>
+    </div>
   </div>
 
   <!-- 効果音 -->

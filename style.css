@@ -43,6 +43,11 @@ button:hover {
   font-size: 1.5em;
   margin: 10px auto;
 }
+/* status bar mode adjustments */
+.mode-single #score { display: inline; }
+.mode-single #score1, .mode-single #score2 { display: none; }
+.mode-two #score { display: none; }
+.mode-two #score1, .mode-two #score2 { display: inline; }
 
 #play-area {
   flex: 1;
@@ -52,14 +57,59 @@ button:hover {
   overflow: hidden;
 }
 
+.player-area {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  pointer-events: auto; /* allow pointer events in these areas */
+}
+.player-area.top { top: 0; }
+.player-area.bottom { bottom: 0; }
+
+/* rotate bottom area for two-player facing mode */
+.mode-two #player2-area {
+  transform: rotate(180deg);
+  transform-origin: center center;
+}
+
+/* separator line between player areas */
+.player-separator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(0,0,0,0.2);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+
 #basket {
-  font-size: 5em;
+  font-size: 3em;
   position: absolute;
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   pointer-events: none;
 }
+
+/* two-player baskets */
+#basket1, #basket2 {
+  font-size: 2.4em;
+  position: absolute;
+  pointer-events: none;
+}
+#basket1 { left: 25%; bottom: 10px; transform: translateX(-50%); }
+#basket2 { left: 75%; bottom: 10px; transform: translateX(-50%); }
+
+.single { display: none; }
+.two { display: none; }
+
+/* When single mode is active show single basket */
+.mode-single #basket.single { display: block; }
+/* When two-player mode active show two baskets */
+.mode-two #basket1.two, .mode-two #basket2.two { display: block; }
 
 .bug {
   position: absolute;
@@ -73,10 +123,24 @@ button:hover {
 }
 
 .bug.fly-to-basket {
-  /* JS will set a specific transition for left/top/transform/opacity; keep transform & opacity targets here */
-  transform: scale(0.2);
-  opacity: 0;
   transform-origin: center center;
+  transform: scale(0.3);
+  opacity: 0;
+  filter: drop-shadow(0 6px 6px rgba(0,0,0,0.2));
+}
+
+.effect {
+  position: absolute;
+  font-size: 1.4em;
+  color: #ff4444;
+  font-weight: 900;
+  pointer-events: none;
+  transform-origin: center center;
+}
+
+@keyframes effectScale {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
 }
 
 .bug:active {
@@ -96,5 +160,18 @@ button:hover {
 @keyframes floatUp {
   0%   { opacity: 1; transform: translateY(0); }
   100% { opacity: 0; transform: translateY(-40px); }
+}
+
+.touch-dot {
+  position: fixed;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  border: 2px solid rgba(0,0,0,0.2);
+  z-index: 9999;
+  pointer-events: none;
+  transform: scale(1);
+  transition: transform 200ms ease-out, opacity 300ms ease-out;
 }
 
